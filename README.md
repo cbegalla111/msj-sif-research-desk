@@ -20,3 +20,5 @@ Peer suggestions are curated starting points, not equivalence claims. Metric lea
 Thirteen deterministic screens cover cash burn, cash conversion, margin changes, capital intensity, leverage, interest coverage, dilution, stock compensation, receivables, inventory, analyst disagreement, and revisions. Every screen distinguishes signals from no trigger and missing coverage, states its threshold, and supplies a follow-up research question. These are broad heuristics and are not fraud detection or investment recommendations.
 
 `/api/research` supplies recent SEC filing links (cached 1 hour) and provider-tagged company news (cached 15 minutes). Curated primary-source briefs for four starter companies carry a fixed November 16, 2026 research date and do not auto-generate new summaries. Live source feeds and dated editorial analysis are separate.
+
+Filing retrieval uses a bundled SEC ticker-to-CIK directory snapshot (November 16, 2026), direct SEC submissions when available, and clearly attributed Nasdaq/QuoteMedia mirrors when direct access fails. Unknown tickers attempt the current SEC directory. Coverage failures retain an EDGAR search link.
