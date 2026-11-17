@@ -1,6 +1,13 @@
 # MSJ Student Investment Fund — Research Desk
 
-Private personal equity research dashboard. Company selection and watchlists, analyst targets and EPS forecasts, metric-by-metric peer comparison, and an editable unlevered DCF. Watchlists, models, notes, and last-successful snapshots are local to the visitor's browser.
+**[Open the application →](https://cbegalla111.github.io/msj-sif-research-desk/)**
+
+The interface is hosted on GitHub Pages. Live market-data requests use the public hosted Worker API. Watchlists, notes, and saved models remain in each visitor's browser.
+
+[API-hosted fallback](https://compound-research-desk-m7q2.christianbegalla.chatgpt.site)
+
+
+Student equity research dashboard. Company selection and watchlists, analyst targets and EPS forecasts, metric-by-metric peer comparison, and an editable unlevered DCF. Watchlists, models, notes, and last-successful snapshots are local to the visitor's browser.
 
 ## Build and check
 
@@ -34,3 +41,13 @@ The Info & Data tab documents source lineage, refresh and cache timing, financia
 Only one research panel is visible at a time. Notes, detailed forecasts, sensitivity, narrative briefs, and explanations are expandable. Information and diagnostics remain in a separate view.
 
 The hosted Worker can process independent user requests; browser-local state is per browser profile, not shared fund data. Identical in-flight upstream requests are coalesced within one Worker instance, alongside existing TTL caching. This reduces duplicate requests during bursts, but is not a cross-instance shared cache. Provider quotas can still limit concurrent usage. No tested maximum user count is claimed. Website audience remains controlled by Sites permissions; public GitHub visibility does not grant website access.
+
+## GitHub Pages deployment
+
+- `npm run build:pages` writes the static frontend to the repository root.
+- Repository Pages settings: **Deploy from a branch → main → / (root)**.
+- The live URL is https://cbegalla111.github.io/msj-sif-research-desk/.
+- `.nojekyll` keeps JavaScript and assets unmodified. Relative module/image paths support the repository subpath.
+- `globalThis.MSJ_API_BASE` contains the public API origin, not a credential. The API explicitly permits the GitHub Pages origin through CORS.
+- After frontend changes, rebuild Pages output and push `main`. GitHub then publishes the new files. Worker/backend changes additionally require a Sites deployment; a GitHub push alone does not deploy the API.
+- The API serves public financial data only. It does not store or expose visitors' watchlists or notes.
