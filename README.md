@@ -28,3 +28,9 @@ Filing retrieval uses a bundled SEC ticker-to-CIK directory snapshot (November 1
 The navy-and-gold theme and corner crest adapt the user-provided SIF reference. The research watchlist is explicitly not a record of fund holdings. Browser storage keys and the existing origin are retained so existing local models and notes continue to work.
 
 The Info & Data tab documents source lineage, refresh and cache timing, financial methodology, student pitch workflow, and browser-local storage. Normal loaded responses and direct diagnostics have different status labels. `/api/health?symbol=MSFT` runs seven company-specific probes against quotes, standardized statements, targets, EPS estimates, search, filings, and news. These requests bypass the app's response cache but cannot control a provider's own caching. Results distinguish failed requests, missing company coverage, stale snapshots, and untested feeds, with source and retrieval timestamps. They are point-in-time observations, not global provider uptime or a promise of exchange-real-time data.
+
+## Compact views and simultaneous use
+
+Only one research panel is visible at a time. Notes, detailed forecasts, sensitivity, narrative briefs, and explanations are expandable. Information and diagnostics remain in a separate view.
+
+The hosted Worker can process independent user requests; browser-local state is per browser profile, not shared fund data. Identical in-flight upstream requests are coalesced within one Worker instance, alongside existing TTL caching. This reduces duplicate requests during bursts, but is not a cross-instance shared cache. Provider quotas can still limit concurrent usage. No tested maximum user count is claimed. Website audience remains controlled by Sites permissions; public GitHub visibility does not grant website access.
