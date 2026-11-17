@@ -1,4 +1,4 @@
-# Compound Research Desk
+# MSJ Student Investment Fund — Research Desk
 
 Private personal equity research dashboard. Company selection and watchlists, analyst targets and EPS forecasts, metric-by-metric peer comparison, and an editable unlevered DCF. Watchlists, models, notes, and last-successful snapshots are local to the visitor's browser.
 
@@ -22,3 +22,9 @@ Thirteen deterministic screens cover cash burn, cash conversion, margin changes,
 `/api/research` supplies recent SEC filing links (cached 1 hour) and provider-tagged company news (cached 15 minutes). Curated primary-source briefs for four starter companies carry a fixed November 16, 2026 research date and do not auto-generate new summaries. Live source feeds and dated editorial analysis are separate.
 
 Filing retrieval uses a bundled SEC ticker-to-CIK directory snapshot (November 16, 2026), direct SEC submissions when available, and clearly attributed Nasdaq/QuoteMedia mirrors when direct access fails. Unknown tickers attempt the current SEC directory. Coverage failures retain an EDGAR search link.
+
+## MSJ branding and Info & Data
+
+The navy-and-gold theme and corner crest adapt the user-provided SIF reference. The research watchlist is explicitly not a record of fund holdings. Browser storage keys and the existing origin are retained so existing local models and notes continue to work.
+
+The Info & Data tab documents source lineage, refresh and cache timing, financial methodology, student pitch workflow, and browser-local storage. Normal loaded responses and direct diagnostics have different status labels. `/api/health?symbol=MSFT` runs seven company-specific probes against quotes, standardized statements, targets, EPS estimates, search, filings, and news. These requests bypass the app's response cache but cannot control a provider's own caching. Results distinguish failed requests, missing company coverage, stale snapshots, and untested feeds, with source and retrieval timestamps. They are point-in-time observations, not global provider uptime or a promise of exchange-real-time data.
